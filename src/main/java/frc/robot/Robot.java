@@ -109,30 +109,30 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         //temporary!!!!!!
-        double rotateoffset = 0.0005;
-        double rotateSpeed = 0.3;
-        double positionPlace = 2.1;
-        double positionGrab = 1.1;
+        // double rotateoffset = 0.0005;
+        // double rotateSpeed = 0.3;
+        // double positionPlace = 2.1;
+        // double positionGrab = 1.1;
 
-        // System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
-        ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
-        if (RobotContainer.secondaryJoystick.getRawButton(7)){
-            if(ArmSubsystem.armRotateEncoder.getPosition() < positionGrab - rotateoffset){
-                ArmSubsystem.armRotateMotor.set(rotateSpeed);
-            }
-            if(ArmSubsystem.armRotateEncoder.getPosition() > positionGrab + rotateoffset){
-                // System.out.println("Woo");
-                ArmSubsystem.armRotateMotor.set(rotateSpeed);
-            }
-        }
-        if (RobotContainer.secondaryJoystick.getRawButton(8)){
-            if(ArmSubsystem.armRotateEncoder.getPosition() < positionPlace - rotateoffset){
-                ArmSubsystem.armRotateMotor.set(rotateSpeed);
-            }
-            if(ArmSubsystem.armRotateEncoder.getPosition() > positionPlace + rotateoffset){
-                ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-            }
-        }
+        System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
+        // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
+        // if (RobotContainer.secondaryJoystick.getRawButton(7)){
+        //     if(ArmSubsystem.armRotateEncoder.getPosition() < positionGrab - rotateoffset){
+        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
+        //     }
+        //     if(ArmSubsystem.armRotateEncoder.getPosition() > positionGrab + rotateoffset){
+        //         // System.out.println("Woo");
+        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
+        //     }
+        // }
+        // if (RobotContainer.secondaryJoystick.getRawButton(8)){
+        //     if(ArmSubsystem.armRotateEncoder.getPosition() < positionPlace - rotateoffset){
+        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
+        //     }
+        //     if(ArmSubsystem.armRotateEncoder.getPosition() > positionPlace + rotateoffset){
+        //         ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+        //     }
+        // }
 
         ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5) * 0.20);
     }

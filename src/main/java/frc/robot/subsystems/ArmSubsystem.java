@@ -23,8 +23,8 @@ public class ArmSubsystem extends SubsystemBase {
 
     public static CANSparkMax armRotateMotor;
 
-    // public static SparkMaxAbsoluteEncoder armRotateEncoder;
-    public static RelativeEncoder armRotateEncoder;
+    public static SparkMaxAbsoluteEncoder armRotateEncoder;
+    // public static RelativeEncoder armRotateEncoder;
 
 
     public ArmSubsystem() {
@@ -36,8 +36,8 @@ public class ArmSubsystem extends SubsystemBase {
         grabberMotor = new CANSparkMax(Constants.ArmConstants.kGrabberMotor,MotorType.kBrushless);
         armRotateMotor = new CANSparkMax(Constants.ArmConstants.kArmRotateMotor,MotorType.kBrushless);
 
-        armRotateEncoder = armRotateMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
-        // armRotateEncoder = armRotateMotor.	getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
+        // armRotateEncoder = armRotateMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
+        armRotateEncoder = armRotateMotor.	getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
 
         suck = new CANSparkMax(Constants.ArmConstants.kVaccumMotor, MotorType.kBrushless);
 
