@@ -2,11 +2,13 @@ package frc.robot.subsystems;
 
 // import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ColorSensorV3;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.SparkMaxAlternateEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -26,6 +28,10 @@ public class ArmSubsystem extends SubsystemBase {
     public static SparkMaxAbsoluteEncoder armRotateEncoder;
     // public static RelativeEncoder armRotateEncoder;
 
+    private final static I2C.Port i2cPort = I2C.Port.kOnboard;
+    public final static ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+
+
 
     public ArmSubsystem() {
         leftArmSlider = new CANSparkMax(Constants.ArmConstants.kLeftSliderMotor, MotorType.kBrushless);
@@ -38,6 +44,7 @@ public class ArmSubsystem extends SubsystemBase {
 
         // armRotateEncoder = armRotateMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
         armRotateEncoder = armRotateMotor.	getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
+        armRotateEncoder.setPositionConversionFactor(2);
 
         suck = new CANSparkMax(Constants.ArmConstants.kVaccumMotor, MotorType.kBrushless);
 

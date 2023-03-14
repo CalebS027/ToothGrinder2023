@@ -9,6 +9,8 @@ import com.revrobotics.SparkMaxAlternateEncoder;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.RobotContainer;
@@ -40,6 +42,9 @@ public class Robot extends TimedRobot {
         // and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();
+
+        // rotate motor set position
+        double targpos = 1;
     }
 
     /**
@@ -110,9 +115,11 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         //temporary!!!!!!
         // double rotateoffset = 0.0005;
-        // double rotateSpeed = 0.3;
-        // double positionPlace = 2.1;
-        // double positionGrab = 1.1;
+        double rotateSpeed = 0.2;
+        double position1 = 1.9;
+        double position2 = 1.7;
+        double position3 = 1;
+        double position4 = 0.1;
 
         System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
         // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
@@ -133,8 +140,37 @@ public class Robot extends TimedRobot {
         //         ArmSubsystem.armRotateMotor.set(-rotateSpeed);
         //     }
         // }
+        ArmSubsystem.armRotateMotor.set(0);
+    if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+        ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 90 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 90 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 180 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 180 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
+    if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
+        ArmSubsystem.armRotateMotor.set(rotateSpeed);
+    }
+       
+    ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
+    
+    Color detectedColor = ArmSubsystem.m_colorSensor.getColor();
+    int proximity = ArmSubsystem.m_colorSensor.getProximity();
+    
 
-        ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5) * 0.20);
+    SmartDashboard.putNumber("Red", detectedColor.red);
+    SmartDashboard.putNumber("Green", detectedColor.green);
+    SmartDashboard.putNumber("Blue", detectedColor.blue);
+    SmartDashboard.putNumber("Proximity", proximity);
+
     }
 
     @Override
