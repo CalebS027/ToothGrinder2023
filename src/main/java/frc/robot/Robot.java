@@ -44,7 +44,7 @@ public class Robot extends TimedRobot {
         m_robotContainer = new RobotContainer();
 
         // rotate motor set position
-        double targpos = 1;
+        // double targpos = 1;
     }
 
     /**
@@ -140,10 +140,13 @@ public class Robot extends TimedRobot {
         //         ArmSubsystem.armRotateMotor.set(-rotateSpeed);
         //     }
         // }
-        ArmSubsystem.armRotateMotor.set(0);
-    if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-        ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    }
+    //     ArmSubsystem.armRotateMotor.set(0);
+    // if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+    // }
     // if(RobotContainer.secondaryJoystick.getPOV() == 90 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
     //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
     // }
@@ -156,9 +159,12 @@ public class Robot extends TimedRobot {
     // if(RobotContainer.secondaryJoystick.getPOV() == 180 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
     //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
     // }
-    if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
-        ArmSubsystem.armRotateMotor.set(rotateSpeed);
-    }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
+    //     ArmSubsystem.armRotateMotor.set(rotateSpeed);
+    // }
+    // if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
+    //     ArmSubsystem.armRotateMotor.set(rotateSpeed);
+    // }
        
     ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
     
