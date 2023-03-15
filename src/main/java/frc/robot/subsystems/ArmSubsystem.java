@@ -45,6 +45,7 @@ public class ArmSubsystem extends SubsystemBase {
         // armRotateEncoder = armRotateMotor.getAlternateEncoder(SparkMaxAlternateEncoder.Type.kQuadrature, 8192);
         armRotateEncoder = armRotateMotor.	getAbsoluteEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle);
         armRotateEncoder.setPositionConversionFactor(360);
+        armRotateEncoder.setZeroOffset(300);
 
         suck = new CANSparkMax(Constants.ArmConstants.kVaccumMotor, MotorType.kBrushless);
 

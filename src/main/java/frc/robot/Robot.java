@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
 
     private RobotContainer m_robotContainer;
 
-    double targetPos;
+    double targetPos = 90;
 
     /**
      * This function is run when the robot is first started up and should be used
@@ -115,79 +115,38 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         //temporary!!!!!!
-        double rotateoffset = 2;
-        double pos1 = 90;
-        double pos2 = 110;
-        double pos3 = 130;
-        double pos4 = 190;
-        double rotateSpeed = 0.15;
+        double rotateoffset = 5;
+        double pos1 = 95;
+        double pos2 = 115;
+        double pos3 = 180;
+        double pos4 = 285;
+        double rotateSpeed = 0.5;
+        double P = ((Math.abs(ArmSubsystem.armRotateEncoder.getPosition() - targetPos)+50)/300);
 
-        System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
-       // rotate motor set position
-    // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
-        // if (RobotContainer.secondaryJoystick.getRawButton(7)){
-        //     if(ArmSubsystem.armRotateEncoder.getPosition() < positionGrab - rotateoffset){
-        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
-        //     }
-        //     if(ArmSubsystem.armRotateEncoder.getPosition() > positionGrab + rotateoffset){
-        //         // System.out.println("Woo");
-        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
-        //     }
-        // }
-        // if (RobotContainer.secondaryJoystick.getRawButton(8)){
-        //     if(ArmSubsystem.armRotateEncoder.getPosition() < positionPlace - rotateoffset){
-        //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
-        //     }
-        //     if(ArmSubsystem.armRotateEncoder.getPosition() > positionPlace + rotateoffset){
-        //         ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-        //     }
-        // }
-    //     ArmSubsystem.armRotateMotor.set(0);
-    // if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 0 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 90 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 90 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 180 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 180 && ArmSubsystem.armRotateEncoder.getPosition() < 1.9){
-    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
-    //     ArmSubsystem.armRotateMotor.set(rotateSpeed);
-    // }
-    // if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
-    //     ArmSubsystem.armRotateMotor.set(rotateSpeed);
-    // }
-       if(RobotContainer.secondaryJoystick.getPOV() == 0){
-        targetPos = pos1;
-       }
-       if(RobotContainer.secondaryJoystick.getPOV() == 90){
-        targetPos = pos2;
-       }
-       if(RobotContainer.secondaryJoystick.getPOV() == 180){
-        targetPos = pos3;
-       }
-       if(RobotContainer.secondaryJoystick.getPOV() == 270){
-        targetPos = pos4;
-       }
-       
-       if(ArmSubsystem.armRotateEncoder.getPosition() > targetPos - rotateoffset){
-        ArmSubsystem.armRotateMotor.set(-rotateSpeed);
-       }
-       if(ArmSubsystem.armRotateEncoder.getPosition() < targetPos + rotateoffset){
-        ArmSubsystem.armRotateMotor.set(rotateSpeed);
-       }
+        // System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
 
-    // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
+    //    if(RobotContainer.secondaryJoystick.getPOV() == 0){
+    //     targetPos = pos1;
+    //    }
+    //    if(RobotContainer.secondaryJoystick.getPOV() == 90){
+    //     targetPos = pos2;
+    //    }
+    //    if(RobotContainer.secondaryJoystick.getPOV() == 180){
+    //     targetPos = pos3;
+    //    }
+    //    if(RobotContainer.secondaryJoystick.getPOV() == 270){
+    //     targetPos = pos4;
+    //    }
+    //    ArmSubsystem.armRotateMotor.set(0);
+    //    if(ArmSubsystem.armRotateEncoder.getPosition() > targetPos + rotateoffset){
+    //     ArmSubsystem.armRotateMotor.set(-rotateSpeed * P);
+    //    }
+    //    if(ArmSubsystem.armRotateEncoder.getPosition() < targetPos - rotateoffset){
+    //     ArmSubsystem.armRotateMotor.set(rotateSpeed * P);
+    //    }
+
+    ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
+    System.out.println(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
     
     // Color detectedColor = ArmSubsystem.m_colorSensor.getColor();
     // int proximity = ArmSubsystem.m_colorSensor.getProximity();
