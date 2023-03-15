@@ -31,6 +31,8 @@ public class Robot extends TimedRobot {
 
     private RobotContainer m_robotContainer;
 
+    double targetPos;
+
     /**
      * This function is run when the robot is first started up and should be used
      * for any
@@ -43,8 +45,8 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         m_robotContainer = new RobotContainer();
 
-        // rotate motor set position
-        // double targpos = 1;
+ 
+
     }
 
     /**
@@ -107,22 +109,22 @@ public class Robot extends TimedRobot {
         if (m_autonomousCommand != null) {
             m_autonomousCommand.cancel();
         }
-
     }
 
     /** This function is called periodically during operator control. */
     @Override
     public void teleopPeriodic() {
         //temporary!!!!!!
-        // double rotateoffset = 0.0005;
-        double rotateSpeed = 0.2;
-        double position1 = 1.9;
-        double position2 = 1.7;
-        double position3 = 1;
-        double position4 = 0.1;
+        double rotateoffset = 2;
+        double pos1 = 90;
+        double pos2 = 110;
+        double pos3 = 130;
+        double pos4 = 190;
+        double rotateSpeed = 0.15;
 
         System.out.println(ArmSubsystem.armRotateEncoder.getPosition());
-        // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
+       // rotate motor set position
+    // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5));
         // if (RobotContainer.secondaryJoystick.getRawButton(7)){
         //     if(ArmSubsystem.armRotateEncoder.getPosition() < positionGrab - rotateoffset){
         //         ArmSubsystem.armRotateMotor.set(rotateSpeed);
@@ -165,17 +167,36 @@ public class Robot extends TimedRobot {
     // if(RobotContainer.secondaryJoystick.getPOV() == 270 && ArmSubsystem.armRotateEncoder.getPosition() > 0.1){
     //     ArmSubsystem.armRotateMotor.set(rotateSpeed);
     // }
+       if(RobotContainer.secondaryJoystick.getPOV() == 0){
+        targetPos = pos1;
+       }
+       if(RobotContainer.secondaryJoystick.getPOV() == 90){
+        targetPos = pos2;
+       }
+       if(RobotContainer.secondaryJoystick.getPOV() == 180){
+        targetPos = pos3;
+       }
+       if(RobotContainer.secondaryJoystick.getPOV() == 270){
+        targetPos = pos4;
+       }
        
-    ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
+       if(ArmSubsystem.armRotateEncoder.getPosition() > targetPos - rotateoffset){
+        ArmSubsystem.armRotateMotor.set(-rotateSpeed);
+       }
+       if(ArmSubsystem.armRotateEncoder.getPosition() < targetPos + rotateoffset){
+        ArmSubsystem.armRotateMotor.set(rotateSpeed);
+       }
+
+    // ArmSubsystem.armRotateMotor.set(RobotContainer.secondaryJoystick.getRawAxis(5)*0.2);
     
-    Color detectedColor = ArmSubsystem.m_colorSensor.getColor();
-    int proximity = ArmSubsystem.m_colorSensor.getProximity();
+    // Color detectedColor = ArmSubsystem.m_colorSensor.getColor();
+    // int proximity = ArmSubsystem.m_colorSensor.getProximity();
     
 
-    SmartDashboard.putNumber("Red", detectedColor.red);
-    SmartDashboard.putNumber("Green", detectedColor.green);
-    SmartDashboard.putNumber("Blue", detectedColor.blue);
-    SmartDashboard.putNumber("Proximity", proximity);
+    // SmartDashboard.putNumber("Red", detectedColor.red);
+    // SmartDashboard.putNumber("Green", detectedColor.green);
+    // SmartDashboard.putNumber("Blue", detectedColor.blue);
+    // SmartDashboard.putNumber("Proximity", proximity);
 
     }
 
