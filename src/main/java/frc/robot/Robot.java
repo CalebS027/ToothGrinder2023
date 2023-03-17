@@ -114,7 +114,7 @@ public class Robot extends TimedRobot {
     /** This function is called periodically during operator control. */
     @Override
     public void teleopPeriodic() {
-        //temporary!!!!!!
+
         double rotateoffset = 5;
         double pos1 = 95;
         double pos2 = 115;
