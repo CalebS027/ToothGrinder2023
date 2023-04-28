@@ -1,11 +1,6 @@
 package frc.robot.commands.Auto;
 
-import java.util.function.Supplier;
-
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.subsystems.ArmSubsystem;
 
 public class AutoOpenGrabberCmd extends CommandBase {

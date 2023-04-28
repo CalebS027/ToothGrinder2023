@@ -1,29 +1,20 @@
 package frc.robot;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.Timer;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
@@ -33,9 +24,7 @@ import frc.robot.commands.Arm.ArmSliderBottomCmd;
 import frc.robot.commands.Arm.ArmSliderHumanPlayerCmd;
 import frc.robot.commands.Arm.ArmSliderTopCmd;
 import frc.robot.commands.Arm.ArmSuckCmd;
-import frc.robot.commands.Auto.AutoManipulatorCmd;
-import frc.robot.commands.Auto.AutoOpenGrabberCmd;
-import frc.robot.commands.Auto.AutoWaitCmd;
+//import frc.robot.commands.Auto.AutoWaitCmd;
 import frc.robot.commands.Drive.SwerveJoystickCmd;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.SwerveSubsystem;
@@ -63,16 +52,20 @@ public class RobotContainer {
         }
 // Noah == fart 
         private void configureButtonBindings() {
-                new JoystickButton(secondaryJoystick, 1).whenPressed(new ArmSliderBottomCmd(armSubsystem));
-                new JoystickButton(secondaryJoystick, 2).whenPressed(new ArmSliderHumanPlayerCmd(armSubsystem));
-                new JoystickButton(secondaryJoystick, 4).whenPressed(new ArmSliderTopCmd(armSubsystem));
+                new JoystickButton(secondaryJoystick, 1).onTrue(
+                        new ArmSliderBottomCmd(armSubsystem));
+                new JoystickButton(secondaryJoystick, 2).onTrue(
+                        new ArmSliderHumanPlayerCmd(armSubsystem));
+                new JoystickButton(secondaryJoystick, 4).onTrue(
+                        new ArmSliderTopCmd(armSubsystem));
 
-                new JoystickButton(secondaryJoystick, 5).whenPressed(
+                new JoystickButton(secondaryJoystick, 5).onTrue(
                                 new ArmOpenGrabberCmd(armSubsystem, () -> secondaryJoystick.getRawButton(5)));
-                new JoystickButton(secondaryJoystick, 6).whenPressed(
+                new JoystickButton(secondaryJoystick, 6).onTrue(
                                 new ArmCloseGrabberCmd(armSubsystem, () -> secondaryJoystick.getRawButton(6)));
 
-                new JoystickButton(secondaryJoystick, 3).toggleWhenActive(new ArmSuckCmd(armSubsystem));
+                new JoystickButton(secondaryJoystick, 3).toggleOnTrue(
+                        new ArmSuckCmd(armSubsystem));
         }
 
         public Command getAutonomousCommand() {
@@ -106,15 +99,15 @@ public class RobotContainer {
                 thetaController.enableContinuousInput(-Math.PI, Math.PI);
 
                 // 4. Construct command to follow trajectory
-                SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
-                                trajectory,
-                                swerveSubsystem::getPose,
-                                DriveConstants.kDriveKinematics,
-                                xController,
-                                yController,
-                                thetaController,
-                                swerveSubsystem::setModuleStates,
-                                swerveSubsystem);
+                // SwerveControllerCommand swerveControllerCommand = new SwerveControllerCommand(
+                //                 trajectory,
+                //                 swerveSubsystem::getPose,
+                //                 DriveConstants.kDriveKinematics,
+                //                 xController,
+                //                 yController,
+                //                 thetaController,
+                //                 swerveSubsystem::setModuleStates,
+                //                 swerveSubsystem);
 
                 // 1B. Create trajectory settings
                 TrajectoryConfig configB = new TrajectoryConfig(Constants.DriveConstants.kPhysicalMaxSpeedMetersPerSecond, Constants.DriveConstants.kTeleDriveMaxAccelerationUnitsPerSecond);
