@@ -1,9 +1,7 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.ArmSubsystem;
-import java.util.function.Supplier;
 
 public class ArmSuckCmd extends CommandBase {
 

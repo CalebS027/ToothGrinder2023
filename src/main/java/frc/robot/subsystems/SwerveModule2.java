@@ -28,14 +28,14 @@ public class SwerveModule2 {
     private final CANCoder absoluteEncoder;
     // private final AnalogInput absoluteEncoder;
 
-    private final boolean absoluteEncoderReversed;
+    // private final boolean absoluteEncoderReversed;
     private final double absoluteEncoderOffsetRad;
 
     public SwerveModule2(int driveMotorId, int turningMotorId, boolean driveMotorReversed, boolean turningMotorReversed,
             int absoluteEncoderId, double absoluteEncoderOffset, boolean absoluteEncoderReversed) {
 
         this.absoluteEncoderOffsetRad = absoluteEncoderOffset;
-        this.absoluteEncoderReversed = absoluteEncoderReversed;
+        // this.absoluteEncoderReversed = absoluteEncoderReversed;
 
         //Important:
         // absoluteEncoder = new AnalogInput(absoluteEncoderId);
