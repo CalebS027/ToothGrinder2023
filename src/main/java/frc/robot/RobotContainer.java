@@ -61,7 +61,7 @@ public class RobotContainer {
 
                 configureButtonBindings();
         }
-
+// Noah == fart 
         private void configureButtonBindings() {
                 new JoystickButton(secondaryJoystick, 1).whenPressed(new ArmSliderBottomCmd(armSubsystem));
                 new JoystickButton(secondaryJoystick, 2).whenPressed(new ArmSliderHumanPlayerCmd(armSubsystem));
